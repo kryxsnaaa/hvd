@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message</title>
+    <style>
+        :root { --primary: #ff4d6d; --bg: #fff0f3; }
+        body { background-color: var(--bg); margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        /* The Interactive Heart */
+        #heart-btn { font-size: 80px; cursor: pointer; transition: transform 0.3s; animation: pulse 1.5s infinite; z-index: 10; }
+        #heart-btn:hover { transform: scale(1.2); }
+
+        /* Photo Container */
+        #photo-frame { display: none; width: 300px; height: 300px; border-radius: 20px; border: 5px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; opacity: 0; transition: opacity 2s; margin-bottom: 20px; }
+        #photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* The Letter Area */
+        #letter { display: none; width: 80%; max-width: 500px; text-align: center; color: #590d22; font-size: 1.2rem; line-height: 1.6; opacity: 0; transition: opacity 2s; }
+
+        /* Animations */
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        .fade-in { opacity: 1 !important; }
+    </style>
+</head>
+<body>
+
+    <div id="heart-btn" onclick="reveal()">🎁</div>
+    <p id="instruction">Click the gift to open</p>
+
+    <div id="photo-frame">
+        <img src="your-photo.jpg" alt="Us">
+    </div>
+
+    <div id="letter">
+        <h3>To my favorite person,</h3>
+        <p>You make every day feel like February 14th. I built this page to remind you how much you mean to me. Happy Valentine's Day!</p>
+        <p>❤️ Forever yours.</p>
+    </div>
+
+    <script>
+        function reveal() {
+            // Hide the button and instruction
+            document.getElementById('heart-btn').style.display = 'none';
+            document.getElementById('instruction').style.display = 'none';
+
+            // Show and fade in the photo
+            const photo = document.getElementById('photo-frame');
+            photo.style.display = 'block';
+            setTimeout(() => photo.classList.add('fade-in'), 100);
+
+            // Show and fade in the letter after 2 seconds
+            const letter = document.getElementById('letter');
+            setTimeout(() => {
+                letter.style.display = 'block';
+                setTimeout(() => letter.classList.add('fade-in'), 100);
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
